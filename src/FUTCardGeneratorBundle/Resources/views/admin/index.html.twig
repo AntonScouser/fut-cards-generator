@@ -1,0 +1,20 @@
+{% extends 'FUTCardGeneratorBundle::base.html.twig' %}
+
+{% block body %}
+    <div class="wrapper">
+        {% include "FUTCardGeneratorBundle:admin:headerMenu.html.twig" %}
+        <!-- Left side column. contains the logo and sidebar -->
+        {% include "FUTCardGeneratorBundle:admin:sidebar.html.twig" %}
+
+        <div class="content-wrapper">
+            {% block content %}
+            {% endblock %}
+        </div>
+    </div>
+
+    {% include "FUTCardGeneratorBundle:admin:footerJavascripts.html.twig" %}
+
+    {% block footer_scripts %}
+
+    {% endblock %}
+{% endblock %}

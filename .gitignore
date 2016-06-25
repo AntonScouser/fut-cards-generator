@@ -1,11 +1,17 @@
-# Build and Release Folders
-bin/
-bin-debug/
-bin-release/
-
-# Other files and folders
-.settings/
-
-# Project files, i.e. `.project`, `.actionScriptProperties` and `.flexProperties`
-# should NOT be excluded as they contain compiler settings and other important
-# information for Eclipse / Flash Builder.
+/app/config/parameters.yml
+/build/
+/phpunit.xml
+/var/*
+!/var/cache
+/var/cache/*
+!var/cache/.gitkeep
+!/var/logs
+/var/logs/*
+!var/logs/.gitkeep
+!/var/sessions
+/var/sessions/*
+!var/sessions/.gitkeep
+!var/SymfonyRequirements.php
+/vendor/
+/web/bundles/
+/.idea/

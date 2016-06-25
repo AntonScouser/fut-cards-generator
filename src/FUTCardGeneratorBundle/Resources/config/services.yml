@@ -1,0 +1,6 @@
+parameters:
+    futcardgenerator.motm_generator.class: FUTCardGeneratorBundle\Service\MOTMGenerator
+
+services:
+    futcardgenerator.motm_generator:
+        class: %futcardgenerator.motm_generator.class%

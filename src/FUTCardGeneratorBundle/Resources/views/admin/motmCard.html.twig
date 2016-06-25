@@ -1,0 +1,127 @@
+{% extends "FUTCardGeneratorBundle:admin:index.html.twig" %}
+
+{% block content %}
+    <section class="content-header">
+        <h1>
+            Карточка игрока матча
+        </h1>
+        <ol class="breadcrumb">
+            <li><a href="#"><i class="fa fa-dashboard"></i>Главная</a></li>
+            <li class="active">Карточка игрока матча</li>
+        </ol>
+    </section>
+    <section class="content">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="box box-primary">
+                    <form enctype="multipart/form-data" action="{{ path("motm_card") }}" id="motm-card-form" role="form" method="POST" >
+                        <div class="box-body">
+                            <h4>Основная информация</h4>
+                            <div class="form-group">
+                                <label for="nickname">Никнейм</label>
+                                <input name="nickname" type="text"
+                                       class="form-control" id="nickname"
+                                       placeholder="Введите никнейм игрока"
+                                       value="{{ app.request.get('nickname') }}"
+                                />
+                            </div>
+                            <div class="row">
+                                <div class="col-xs-4">
+                                    <label for="skill">Уровень игры</label>
+                                    <input name="skill" type="text"
+                                           class="form-control" id="skill"
+                                           placeholder="Уровень игры"
+                                           value="{{ app.request.get('skill') }}"
+                                    />
+                                </div>
+                                <div class="col-xs-4">
+                                    <label for="position">Позиция</label>
+                                    <select name="position" id="position" class="form-control">
+                                        {% set positions = [
+                                            'ВР','ЦЗ', 'ЛЗ', 'ПЗ', 'ЦАП', 'ЦОП', 'ФРВ', 'ЦП', 'ПП', 'ЛП', 'ЛФА', 'ПФА'
+                                        ] %}
+                                        {% for position in positions %}
+                                            <option value="{{ position }}">{{ position }}</option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+                                <div class="col-xs-4">
+                                    <label for="cards-counter">OK</label>
+                                    <input name="cards_counter" type="text" class="form-control" id="cards-counter" placeholder="Карточка по счету">
+                                </div>
+                            </div>
+                            <h4>Изображения</h4>
+                            <div class="form-group">
+                                <label for="player-logo">Аватар игрока</label>
+                                <input name="player_logo" type="file" id="player-logo">
+                                <p class="help-block">.png с прозрачным фоном, размер - 160px x 160px.
+                            </div>
+                            <div class="form-group">
+                                <label for="club-logo">Лого клуба</label>
+                                <input name="club_logo" type="file" id="club-logo">
+                                <p class="help-block">.png с прозрачным фоном, размер - 480px x 480px.
+                            </div>
+                            <h4>Статистика</h4>
+                            <div class="row">
+                                <div class="col-xs-4">
+                                    <label for="rating">Оценка</label>
+                                    <input name="rating" type="text" class="form-control" id="rating" placeholder="Оценка">
+                                </div>
+                                <div class="col-xs-4">
+                                    <label for="goals">Голы</label>
+                                    <input value="goal" type="text" class="form-control" id="goals" placeholder="Голы">
+                                </div>
+                                <div class="col-xs-4">
+                                    <label for="assists">Ассисты</label>
+                                    <input name="assists" type="text" class="form-control" id="assists" placeholder="Голевые передачи">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-xs-4">
+                                    <label for="destruction">Отборы мяча</label>
+                                    <input name="destruction" type="text" class="form-control" id="destruction" placeholder="Отборы мяча">
+                                </div>
+                                <div class="col-xs-4">
+                                    <label for="success-control">Успешный контроль</label>
+                                    <input name="success_control" type="text" class="form-control" id="success-control" placeholder="Успешный контроль">
+                                </div>
+                                <div class="col-xs-4">
+                                    <label for="full-control">Весь контроль</label>
+                                    <input name="full_control" type="text" class="form-control" id="full-control" placeholder="Весь контроль">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-xs-4">
+                                    <label for="saves">Сейвы</label>
+                                    <input name="saves" type="text" class="form-control" id="saves" placeholder="Сейвы">
+                                </div>
+                                <div class="col-xs-4">
+                                    <label for="goals-against">Пропущенные голы</label>
+                                    <input name="goals_against" type="text" class="form-control" id="goals-against" placeholder="Пропущенные голы">
+                                </div>
+                                <div class="col-xs-4">
+                                    <label for="dry-matches">Сухие матчи</label>
+                                    <input name="dry_matches" type="text" class="form-control" id="dry-matches" placeholder="Сухие матчи">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="box-footer">
+                            <button type="submit" class="btn btn-primary">Создать карточку игрока</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            {% if cardImage %}
+            <div class="col-md-4">
+                <div class="box box-info -align-center">
+                    <div class="box-header with-border">
+                        <h3 class="box-title">Карточка игрока</h3>
+                    </div>
+
+                    <img id="fut-card-content" src="data:image/png;base64, {{ cardImage }}" />
+                </div>
+            </div>
+            {% endif %}
+        </div>
+    </section>
+{% endblock %}
